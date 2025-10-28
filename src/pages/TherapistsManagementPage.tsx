@@ -242,9 +242,9 @@ function TherapistsManagementPage() {
       color: 'from-yellow-500 to-orange-500'
     },
     {
-      title: 'Average Rating',
-      value: (therapists.reduce((sum, t) => sum + t.rating, 0) / therapists.length || 0).toFixed(1),
-      icon: Star,
+      title: 'Total Patients',
+      value: therapists.reduce((sum, t) => sum + t.patientsCount, 0),
+      icon: Users,
       color: 'from-purple-500 to-pink-500'
     }
   ];
@@ -437,11 +437,13 @@ function TherapistsManagementPage() {
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Star className="w-4 h-4 text-yellow-400" />
+                  <Users className={`w-4 h-4 ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                  }`} />
                   <span className={`text-sm ${
                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    {therapist.rating} ({therapist.patientsCount} patients)
+                    {therapist.patientsCount} patients
                   </span>
                 </div>
               </div>
@@ -617,13 +619,10 @@ function TherapistsManagementPage() {
                       <div>
                         <label className={`text-sm font-medium ${
                           theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                        }`}>Rating</label>
-                        <div className="flex items-center space-x-2">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className={`${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-                            {selectedTherapist.rating}
-                          </span>
-                        </div>
+                        }`}>Patients</label>
+                        <p className={`${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+                          {selectedTherapist.patientsCount}
+                        </p>
                       </div>
                     </div>
                   </div>

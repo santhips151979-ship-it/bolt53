@@ -123,7 +123,6 @@ function AnalyticsPage() {
       return {
         name: therapist.name,
         sessions: completed,
-        rating: therapist.rating || 4.8,
         revenue: revenue,
         patients: new Set(therapistBookings.map((b: any) => b.patientId)).size
       };
@@ -386,9 +385,9 @@ function AnalyticsPage() {
             content += `${module.name},${module.usage}\n`;
           });
           
-          content += '\nTherapist,Sessions,Rating,Revenue,Patients\n';
+          content += '\nTherapist,Sessions,Revenue,Patients\n';
           analyticsData.therapists.forEach((therapist: any) => {
-            content += `${therapist.name},${therapist.sessions},${therapist.rating},₹${therapist.revenue},${therapist.patients}\n`;
+            content += `${therapist.name},${therapist.sessions},₹${therapist.revenue},${therapist.patients}\n`;
           });
           
           filename = `mindcare-analytics-${timestamp}.csv`;
@@ -418,7 +417,6 @@ function AnalyticsPage() {
           analyticsData.therapists.forEach((therapist: any, index: number) => {
             content += `${index + 1}. ${therapist.name}\n`;
             content += `   Sessions: ${therapist.sessions}\n`;
-            content += `   Rating: ${therapist.rating.toFixed(1)}/5\n`;
             content += `   Revenue: ₹${therapist.revenue.toLocaleString()}\n`;
             content += `   Patients: ${therapist.patients}\n\n`;
           });
@@ -860,11 +858,6 @@ function AnalyticsPage() {
                   <th className={`px-4 py-3 text-left text-sm font-medium ${
                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Rating
-                  </th>
-                  <th className={`px-4 py-3 text-left text-sm font-medium ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
                     Revenue
                   </th>
                 </tr>
@@ -892,14 +885,6 @@ function AnalyticsPage() {
                       theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       {therapist.patients}
-                    </td>
-                    <td className={`px-4 py-3 text-sm ${
-                      theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span>{therapist.rating.toFixed(1)}</span>
-                      </div>
                     </td>
                     <td className={`px-4 py-3 text-sm font-medium text-green-600`}>
                       ₹{therapist.revenue.toLocaleString()}
