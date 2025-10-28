@@ -433,7 +433,7 @@ function TherapistsManagementPage() {
                     theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
                   }`} />
                   <span className={`text-sm font-semibold text-green-600`}>
-                    ${therapist.hourlyRate}/hour
+                    ₹{therapist.hourlyRate}/hour
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -611,7 +611,7 @@ function TherapistsManagementPage() {
                           theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                         }`}>Hourly Rate</label>
                         <p className={`${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>
-                          ${selectedTherapist.hourlyRate}
+                          ₹{selectedTherapist.hourlyRate}
                         </p>
                       </div>
                       <div>

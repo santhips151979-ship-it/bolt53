@@ -59,7 +59,7 @@ export const trackUserRegistration = (userData: any) => {
 
 export const trackPayment = (paymentData: any) => {
   const analytics = getAnalytics();
-  const amount = parseFloat(paymentData.amount.replace('$', ''));
+  const amount = parseFloat(paymentData.amount.replace(/[₹$,]/g, ''));
   
   // Update revenue metrics
   analytics.revenue.totalRevenue += amount;
@@ -199,7 +199,7 @@ export const getAnalytics = (): PlatformAnalytics => {
   const totalRevenue = bookings
     .filter((b: any) => b.status === 'completed')
     .reduce((sum: number, booking: any) => {
-      const amount = parseFloat(booking.amount?.replace('$', '') || '0');
+      const amount = parseFloat(booking.amount?.replace(/[₹$,]/g, '') || '0');
       return sum + amount;
     }, 0);
 
@@ -268,7 +268,7 @@ export const updateAnalyticsFromCurrentData = () => {
   const totalRevenue = bookings
     .filter((b: any) => b.status === 'completed')
     .reduce((sum: number, booking: any) => {
-      const amount = parseFloat(booking.amount?.replace('$', '') || '0');
+      const amount = parseFloat(booking.amount?.replace(/[₹$,]/g, '') || '0');
       return sum + amount;
     }, 0);
   
@@ -395,7 +395,7 @@ const getEventDescription = (event: any) => {
     case 'therapist_approved':
       return `Therapist approved: ${event.data.name}`;
     case 'payment_processed':
-      return `Payment processed: $${event.data.amount} session fee`;
+      return `Payment processed: ₹${event.data.amount} session fee`;
     case 'session_started':
       return `Therapy session started`;
     case 'session_completed':
