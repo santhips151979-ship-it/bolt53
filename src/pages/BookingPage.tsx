@@ -765,14 +765,6 @@ function BookingPage() {
                             {therapist.title}
                           </p>
                           <div className="flex items-center space-x-2 mt-1">
-                            <div className="flex items-center space-x-1">
-                              <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                              <span className={`text-sm font-medium ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-800'
-                              }`}>
-                                {therapist.rating}
-                              </span>
-                            </div>
                             <span className={`text-sm ${
                               theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                             }`}>
