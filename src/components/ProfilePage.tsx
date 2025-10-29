@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, Phone, Calendar, MapPin, CreditCard as Edit, Save, X, Camera, Shield, Award, Clock, Heart } from 'lucide-react';
+import { User, Mail, Phone, Calendar, MapPin, CreditCard as Edit, Save, X, Camera, Shield } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import toast from 'react-hot-toast';
@@ -237,49 +237,11 @@ function ProfilePage() {
               </p>
 
               {user.role === 'therapist' && user.verified && (
-                <div className="flex items-center justify-center space-x-2 mb-4">
+                <div className="flex items-center justify-center space-x-2">
                   <Shield className="w-4 h-4 text-green-500" />
                   <span className="text-sm text-green-500 font-medium">Verified Therapist</span>
                 </div>
               )}
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className={`p-3 rounded-xl ${
-                  theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
-                }`}>
-                  <div className="flex items-center justify-center mb-2">
-                    <Heart className="w-5 h-5 text-purple-500" />
-                  </div>
-                  <p className={`text-sm font-medium ${
-                    theme === 'dark' ? 'text-white' : 'text-gray-800'
-                  }`}>
-                    {user.role === 'patient' ? 'Sessions' : 'Patients'}
-                  </p>
-                  <p className={`text-xs ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    {user.role === 'patient' ? '24' : '156'}
-                  </p>
-                </div>
-                <div className={`p-3 rounded-xl ${
-                  theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50'
-                }`}>
-                  <div className="flex items-center justify-center mb-2">
-                    <Clock className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <p className={`text-sm font-medium ${
-                    theme === 'dark' ? 'text-white' : 'text-gray-800'
-                  }`}>
-                    {user.role === 'patient' ? 'Streak' : 'Experience'}
-                  </p>
-                  <p className={`text-xs ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    {user.role === 'patient' ? '7 days' : '8 years'}
-                  </p>
-                </div>
-              </div>
             </div>
           </motion.div>
 
